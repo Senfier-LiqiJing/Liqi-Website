@@ -2,6 +2,7 @@
 title: 🎉 Unlocking "Free Control" in Chaos - A Compact Multiplier-Oriented Oscillator
 summary: Take full control of your personal brand and privacy by migrating away from the big tech platforms!
 date: 2023-10-27
+math: true
 
 # Featured image
 # Place an image named `featured.jpg/png` in this page's folder and customize its options here.
@@ -26,65 +27,62 @@ Welcome 👋
 
 {{< toc mobile_only=true is_open=true >}}
 
+<div style="text-align: justify;">
+
 ## Overview
 
-1. The Hugo Blox website builder for Hugo, along with its starter templates, is designed for professional creators, educators, and teams/organizations - although it can be used to create any kind of site
-2. The template can be modified and customised to suit your needs. It's a good platform for anyone looking to take control of their data and online identity whilst having the convenience to start off with a **no-code solution (write in Markdown and customize with YAML parameters)** and having **flexibility to later add even deeper personalization with HTML and CSS**
-3. You can work with all your favourite tools and apps with hundreds of plugins and integrations to speed up your workflows, interact with your readers, and much more
+Chaotic systems are crucial for modern applications in cryptography, image encryption, and secure communications. However, implementing these systems in hardware often comes with a heavy cost: they typically require complex circuits with many quadratic terms, leading to high power consumption and stability issues.
 
-[//]: # '[![The template is mobile first with a responsive design to ensure that your site looks stunning on every device.](https://raw.githubusercontent.com/HugoBlox/hugo-blox-builder/main/templates/academic-cv/preview.png)](https://hugoblox.com)'
+In this project, which was published in **IEEE Transactions on Circuits and Systems II: Express Briefs**, we addressed a significant challenge in the field: **How do we build a robust chaotic oscillator that is both compact and easy to control?**
 
-### Get Started
 
-- 👉 [**Create a new site**](https://hugoblox.com/templates/)
-- 📚 [**Personalize your site**](https://docs.hugoblox.com/)
-- 💬 [Chat with the **Hugo Blox community**](https://discord.gg/z8wNYzb) or [**Hugo community**](https://discourse.gohugo.io)
-- 🐦 Twitter: [@BuildLore](https://x.com/BuildLore) [@GeorgeCushen](https://x.com/GeorgeCushen) #MadeWithHugoBlox
-- 💡 [Request a **feature** or report a **bug** for _Hugo Blox_](https://github.com/HugoBlox/hugo-blox-builder/issues)
-- ⬆️ **Updating Hugo Blox?** View the [Update Guide](https://docs.hugoblox.com/reference/update/) and [Release Notes](https://github.com/HugoBlox/hugo-blox-builder/releases)
+### The Core Problem
+Traditional chaotic circuits rely heavily on operational amplifiers (op-amps) for integral summation. When a system has many quadratic nonlinear feedback terms, the circuit becomes cumbersome and prone to failure. Furthermore, controlling the signal's properties—like amplitude or offset—usually involves complex parameter tuning that can break the chaotic state.
 
-## Crowd-funded open-source software
+## Our Solution: "Free Control"
 
-To help us develop this template and software sustainably under the MIT license, we ask all individuals and businesses that use it to help support its ongoing maintenance and development via sponsorship.
+We introduced a **Compact Multiplier-Oriented Chaotic Oscillator** that allows for "Free Control." This means the chaotic signal can be freely manipulated in three key aspects without altering the fundamental circuit structure:
+1.  **Amplitude Control**
+2.  **Frequency Modulation**
+3.  **Offset Boosting**
 
-### [❤️ Click here to become a sponsor and help support Hugo Blox's future ❤️](https://hugoblox.com/sponsor/)
 
-As a token of appreciation for sponsoring, you can **unlock [these](https://hugoblox.com/sponsor/) awesome rewards and extra features 🦄✨**
+### Key Innovations
 
-## Ecosystem
+* **Multiplier-Oriented Design:** We simplified the circuit by exploiting the current output characteristics of the **AD633 multiplier** and the **AD844 current feedback op-amp (CFOA)**.
+* **Reduced Component Count:** We realized a chaotic system containing *five* quadratic terms using only **three multipliers and one op-amp**. This is a significant reduction compared to conventional implementations.
+* **Robustness:** By utilizing the AD844 to handle current feedback, we alleviated the computational burden on the multipliers, resulting in a more robust system with higher load capability.
 
-- **[Bibtex To Markdown](https://github.com/GetRD/academic-file-converter):** Automatically import publications from BibTeX
+## Technical Implementation
 
-## Inspiration
+During this research, I conducted comprehensive numerical analysis of the nonlinear dynamical systems using **Python and MATLAB**, applying Lyapunov stability theory to ensure chaotic behavior.
 
-[Learn what other **creators**](https://hugoblox.com/creators/) are building with this template.
+The hardware implementation focused on a specific system equation tailored for simplification:
 
-## Features
+$$
+\begin{cases}
+\dot{x} = cy + y^2 - ayz \\
+\dot{y} = -z^2 + byz \\
+\dot{z} = (x-d)y
+\end{cases}
+$$
 
-- **Page builder** - Create _anything_ with no-code [**blocks**](https://hugoblox.com/blocks/) and [**elements**](https://docs.hugoblox.com/reference/markdown/)
-- **Edit any type of content** - Blog posts, publications, talks, slides, projects, and more!
-- **Create content** in [**Markdown**](https://docs.hugoblox.com/reference/markdown/), [**Jupyter**](https://docs.hugoblox.com/getting-started/cms/), or [**RStudio**](https://docs.hugoblox.com/getting-started/cms/)
-- **Plugin System** - Fully customizable [**color** and **font themes**](https://docs.hugoblox.com/getting-started/customize/)
-- **Display Code and Math** - Code syntax highlighting and LaTeX math supported
-- **Integrations** - [Google Analytics](https://analytics.google.com), [Disqus commenting](https://disqus.com), Maps, Contact Forms, and more!
-- **Beautiful Site** - Simple and refreshing one-page design
-- **Industry-Leading SEO** - Help get your website found on search engines and social media
-- **Media Galleries** - Display your images and videos with captions in a customizable gallery
-- **Mobile Friendly** - Look amazing on every screen with a mobile friendly version of your site
-- **Multi-language** - 35+ language packs including English, 中文, and Português
-- **Multi-user** - Each author gets their own profile page
-- **Privacy Pack** - Assists with GDPR
-- **Stand Out** - Bring your site to life with animation, parallax backgrounds, and scroll effects
-- **One-Click Deployment** - No servers. No databases. Only files.
+By rescaling parameters $c$ and $d$, we achieved the following control mechanisms:
+* **Parameter $c$:** Controls amplitude and frequency simultaneously.
+* **Parameter $d$:** Controls offset boosting (polarity and position) of the attractor.
 
-## Themes
+We validated these theoretical models by building hardware prototypes. The experimental results perfectly matched our numerical simulations, demonstrating that the phase trajectories could be shifted and scaled freely by simply tuning a rheostat or a DC voltage source.
 
-Hugo Blox and its templates come with **automatic day (light) and night (dark) mode** built-in. Visitors can choose their preferred mode by clicking the sun/moon icon in the header.
+## Impact & Future Work
 
-[Choose a stunning **theme** and **font**](https://docs.hugoblox.com/getting-started/customize/) for your site. Themes are fully customizable.
+This design proves that chaotic circuits do not need to be expensive or complex to be effective. The **multiplier-oriented approach** opens new doors for engineering applications where space and power are limited.
 
-## License
+By enabling "free control," we make it easier to adapt chaotic signals for specific engineering requirements, such as signal masking in secure communications, without redesigning the entire hardware architecture.
 
-Copyright 2016-present [George Cushen](https://georgecushen.com).
+---
 
-Released under the [MIT](https://github.com/HugoBlox/hugo-blox-builder/blob/main/LICENSE.md) license.
+### Citation
+If you find this work useful for your research, please cite our paper:
+> Y. Xu, C. Li, J. Wu, G. Chen and C. Zhang, "A Compact Multiplier-Oriented Chaotic Oscillator for Free Control," in *IEEE Transactions on Circuits and Systems II: Express Briefs*, vol. 70, no. 6, pp. 2276-2280, June 2023.
+
+</div>
