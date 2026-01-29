@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ .Content }}
+
+  {{/* Render all page sections */}}
+  {{ range .Params.sections }}
+    {{ $section_index := add 1 $.Scratch.Get "section_index" | default 0 }}
+    {{ $.Scratch.Set "section_index" $section_index }}
+    {{ partial "functions/render_block.html" (dict "page" $ "block" . "index" $section_index) }}
+  {{ end }}
+
+  {{/* Bio markdown renderer - inline script for homepage */}}
+  <script src="/js/bio-fix.js"></script>
+{{ end }}

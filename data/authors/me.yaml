@@ -2,21 +2,27 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: 徐玚
-  given: Yang
-  family: Xu
-  pronunciation: Yang Xu
-  pronouns: she/her
+  display: Liqi Jing
+  given: Liqi
+  family: Jing
+  pronunciation: Liqi Jing
+  pronouns: he/him
 status:
   icon: "📀"
-role: Master Student in Applied Data Science
-bio: "My research interests include AI for Science and Dynamic Systems."
+role: Master Student in Electrical and Computer Engineering
+bio: |
+  I am currently a Master's student in Electrical and Computer Engineering at Duke University, maintaining a 4.0 GPA. My research centers on **Vision Language Models**, **Generative AI** and **Autonomous Driving**.
+
+  My recent work involves developing StyleVAR, an autoregressive transformer framework for controllable image style transfer. I have also gained industrial research experience at Bosch, where I worked on enhancing VLM grounding capabilities using **Reinforcement Learning (GRPO)** and data distillation.
+
+  Beyond the algorithms, I am an audiophile and a gamer. I enjoy the engineering challenge of building Hi-Res audio systems from scratch—pursuing high fidelity in sound just as I pursue precision in model generation.
+
 affiliations:
-  - name: University of Southern California
-    url: https://www.usc.edu/
+  - name: Duke University
+    url: https://www.duke.edu/
 links:
   - icon: brands/linkedin
-    url: https://www.linkedin.com/in/yang-xu-271742380
+    url: https://www.linkedin.com/in/liqi-jing-039335380/
   - icon: academicons/cv
     url: uploads/resume.pdf
     label: Download my resume

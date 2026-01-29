@@ -1,0 +1,141 @@
+{{/* Override for resume-biography block to support typewriter effect */}}
+{{ $block := .Block }}
+{{ $author_slug := $block.Params.content.username | default "admin" }}
+{{ $author := site.GetPage (printf "authors/%s" $author_slug) }}
+{{ $person := $author.Params }}
+{{ $avatar := ($person.avatar | default "avatar") }}
+{{ $avatar_size := $block.Params.design.avatar.size | default "medium" }}
+{{ $avatar_shape := $block.Params.design.avatar.shape | default "circle" }}
+
+{{/* Avatar size mapping */}}
+{{ $avatar_sizes := dict "small" "150px" "medium" "200px" "large" "320px" "xl" "400px" "xxl" "500px" }}
+{{ $avatar_px := index $avatar_sizes $avatar_size | default "200px" }}
+
+{{/* Avatar shape classes */}}
+{{ $shape_classes := dict "circle" "rounded-full" "square" "" "rounded" "rounded-xl" }}
+{{ $shape_class := index $shape_classes $avatar_shape | default "rounded-full" }}
+
+<section class="w-full">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <div class="flex flex-col items-center gap-8 md:flex-row md:items-start">
+
+      {{/* Avatar */}}
+      {{ if $person.avatar }}
+      <div class="flex-shrink-0">
+        {{ $avatar_image := resources.Get (printf "media/authors/%s" $avatar) }}
+        {{ if $avatar_image }}
+          <img
+            src="{{ $avatar_image.RelPermalink }}"
+            alt="{{ $person.name.display }}"
+            class="{{ $shape_class }} object-cover"
+            {{/* 修改说明：添加 | safeCSS 管道符，确保 CSS 值被视为安全代码，同时有助于减少语法误报 */}}
+            style="width: {{ $avatar_px | safeCSS }}; height: {{ $avatar_px | safeCSS }};"
+            loading="lazy"
+          >
+        {{ end }}
+      </div>
+      {{ end }}
+
+      {{/* Biography Content */}}
+      <div class="flex-1 text-center md:text-left">
+        {{/* Name */}}
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+          {{ $person.name.display }}
+        </h1>
+
+        {{/* Status/Role */}}
+        {{ with $person.status.icon }}
+          <p class="mt-2 text-lg">{{ . }}</p>
+        {{ end }}
+
+        {{/* Role with typewriter effect */}}
+        {{ if $person.role }}
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">
+            <span
+              data-typewriter
+              data-typewriter-text="{{ $person.role }}"
+              data-typewriter-speed="80"
+              data-typewriter-delay="500"
+              data-typewriter-cursor="true"
+              data-typewriter-cursor-char="|"
+            ></span>
+          </p>
+        {{ end }}
+
+        {{/* Biography with optional typewriter effect */}}
+        {{ if $person.bio }}
+          {{ $bio_style := $block.Params.design.biography.style | default "" }}
+          <div class="mt-6 bio-content text-lg text-gray-700 dark:text-gray-300 typewriter-container prose prose-lg max-w-none dark:prose-invert" {{ with $bio_style }}style="{{ . | safeCSS }}"{{ end }}>
+            {{/* Check if typewriter is enabled for bio */}}
+            {{ if $block.Params.design.biography.typewriter }}
+              <span
+                data-typewriter
+                data-typewriter-text="{{ $person.bio }}"
+                data-typewriter-speed="{{ $block.Params.design.biography.typewriter_speed | default 30 }}"
+                data-typewriter-delay="{{ $block.Params.design.biography.typewriter_delay | default 2000 }}"
+                data-typewriter-cursor="{{ $block.Params.design.biography.typewriter_cursor | default true }}"
+              ></span>
+            {{ else }}
+              {{ $person.bio | markdownify }}
+            {{ end }}
+          </div>
+        {{ end }}
+
+        {{/* Additional biography paragraphs */}}
+        {{ with $person.bio_paragraph2 }}
+          <div class="mt-4 text-lg text-gray-700 dark:text-gray-300">
+            {{ . | markdownify }}
+          </div>
+        {{ end }}
+
+        {{ with $person.bio_paragraph3 }}
+          <div class="mt-4 text-lg text-gray-700 dark:text-gray-300">
+            {{ . | markdownify }}
+          </div>
+        {{ end }}
+
+        {{/* Affiliations */}}
+        {{ with $person.affiliations }}
+          <div class="mt-4 text-gray-600 dark:text-gray-400">
+            {{ range . }}
+              {{ if .url }}
+                <a href="{{ .url }}" class="hover:text-primary-600 dark:hover:text-primary-400">{{ .name }}</a>
+              {{ else }}
+                <span>{{ .name }}</span>
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
+
+        {{/* Social Links */}}
+        {{ with $person.links }}
+          <div class="mt-6 flex flex-wrap gap-4 justify-center md:justify-start">
+            {{ range . }}
+              {{ $icon := .icon }}
+              {{ $url := .url }}
+              {{ $label := .label | default $icon }}
+
+              <a
+                href="{{ $url }}"
+                class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                aria-label="{{ $label }}"
+                {{ if hasPrefix $url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}
+              >
+                {{ if hasPrefix $icon "brands/" }}
+                  {{ $icon_name := strings.TrimPrefix "brands/" $icon }}
+                  <i class="fab fa-{{ $icon_name }}"></i>
+                {{ else if hasPrefix $icon "academicons/" }}
+                  {{ $icon_name := strings.TrimPrefix "academicons/" $icon }}
+                  <i class="ai ai-{{ $icon_name }}"></i>
+                {{ else }}
+                  <i class="fas fa-{{ $icon }}"></i>
+                {{ end }}
+                <span>{{ $label }}</span>
+              </a>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>

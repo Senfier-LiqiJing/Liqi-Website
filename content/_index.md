@@ -1,5 +1,5 @@
 ---
-title: 'Home'
+title: 'About me'
 date: 2023-10-24
 type: landing
 sections:
@@ -16,12 +16,8 @@ sections:
       avatar:
         size: medium  # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
         shape: circle # Options: circle (default), square, rounded
-  - block: collection
+  - block: markdown
     content:
-      filters:
-        folders:
-          - blog
-    design:
-      spacing:
-        padding: ['3rem', 0, '6rem', 0]
+      text: |
+        <script src="/js/bio-fix.js"></script>
 ---

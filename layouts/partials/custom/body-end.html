@@ -1,0 +1,198 @@
+{{/* Custom body end content - dynamic backgrounds */}}
+<script>
+  // Dynamic Background Configuration
+  document.addEventListener('DOMContentLoaded', function() {
+    const pageBg = document.getElementById('page-bg');
+
+    if (!pageBg) {
+      console.warn('page-bg element not found');
+      return;
+    }
+
+    // Configuration - CHANGE THIS to switch background types
+    const backgroundConfig = {
+  type: 'particle',
+  particle: {
+    count: 80,
+    speed: 0.5,
+    lineDistance: 150,
+    interactive: true
+  },
+  useOverlay: false
+};
+
+    // Apply background based on type
+    switch(backgroundConfig.type) {
+      case 'gradient':
+        pageBg.className = `bg-animated-gradient ${backgroundConfig.gradientVariant}`;
+        break;
+
+      case 'geometric':
+        pageBg.className = 'bg-geometric';
+        // Add dark mode class if needed
+        if (document.body.classList.contains('dark')) {
+          pageBg.classList.add('dark-mode');
+        }
+        break;
+
+      case 'mesh':
+        pageBg.className = 'bg-mesh-gradient';
+        if (document.body.classList.contains('dark')) {
+          pageBg.classList.add('dark-mode');
+        }
+        break;
+
+      case 'particle':
+        // Set data attributes for particle background
+        pageBg.dataset.particleBackground = 'true';
+        pageBg.dataset.particleCount = backgroundConfig.particle.count;
+        pageBg.dataset.particleSpeed = backgroundConfig.particle.speed;
+        pageBg.dataset.lineDistance = backgroundConfig.particle.lineDistance;
+        pageBg.dataset.interactive = backgroundConfig.particle.interactive;
+        break;
+
+      case 'waves':
+        pageBg.className = 'bg-waves';
+        // Add wave elements
+        for (let i = 0; i < 3; i++) {
+          const wave = document.createElement('div');
+          wave.className = 'wave';
+          pageBg.appendChild(wave);
+        }
+        break;
+
+      case 'none':
+      default:
+        // No background
+        break;
+    }
+
+    // Add overlay if enabled
+    if (backgroundConfig.useOverlay) {
+      const overlay = document.createElement('div');
+      overlay.className = 'bg-overlay';
+      document.body.appendChild(overlay);
+    }
+
+    // Watch for theme changes to update background
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          const isDark = document.body.classList.contains('dark');
+
+          // Update geometric/mesh backgrounds for dark mode
+          if (backgroundConfig.type === 'geometric' || backgroundConfig.type === 'mesh') {
+            if (isDark) {
+              pageBg.classList.add('dark-mode');
+            } else {
+              pageBg.classList.remove('dark-mode');
+            }
+          }
+        }
+      });
+    });
+
+    observer.observe(document.body, { attributes: true });
+  });
+</script>
+
+{{/* Optional: Add content overlay for better readability */}}
+<style>
+  /* Ensure page content is above background */
+  .page-body {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Optional: Add subtle backdrop to improve readability */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0; /* Set to 1 to enable */
+    transition: opacity 0.3s ease;
+  }
+
+  .dark body::after {
+    background: rgba(15, 23, 42, 0.7);
+  }
+
+  /* Ensure header and footer are above overlay */
+  .page-header,
+  footer {
+    position: relative;
+    z-index: 10;
+  }
+</style>
+
+{{/* Bio Markdown Renderer */}}
+<script>
+  /**
+   * Bio Markdown Renderer
+   * Converts markdown-style formatting in the bio text to proper HTML
+   */
+  (function() {
+    'use strict';
+
+    function renderBioMarkdown() {
+      const bioContainer = document.querySelector('.bio-text');
+      if (!bioContainer) {
+        return;
+      }
+
+      // Get the HTML content (preserves newlines better than textContent)
+      let content = bioContainer.innerHTML;
+
+      // First, replace **text** with <strong>text</strong>
+      content = content.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+
+      // Split by newlines to create paragraphs
+      const lines = content.split(/\n+/).map(line => line.trim()).filter(line => line.length > 0);
+
+      // Group consecutive lines - each non-empty line becomes a paragraph
+      const paragraphs = [];
+      let currentPara = '';
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.length > 0) {
+          if (currentPara.length > 0) {
+            paragraphs.push(currentPara);
+          }
+          currentPara = line;
+        }
+      }
+
+      // Add the last paragraph
+      if (currentPara.length > 0) {
+        paragraphs.push(currentPara);
+      }
+
+      // Create HTML for paragraphs
+      const htmlParagraphs = paragraphs.map(para => {
+        return `<p style="margin-bottom: 1.5rem; line-height: 1.75;">${para}</p>`;
+      });
+
+      // Replace the content
+      bioContainer.innerHTML = htmlParagraphs.join('');
+
+      // Add a class to indicate rendering is complete
+      bioContainer.classList.add('bio-rendered');
+
+      console.log(`✓ Bio markdown rendered with ${paragraphs.length} paragraphs`);
+    }
+
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderBioMarkdown);
+    } else {
+      renderBioMarkdown();
+    }
+  })();
+</script>

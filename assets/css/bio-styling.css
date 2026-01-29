@@ -1,0 +1,28 @@
+/* Bio content styling to ensure proper markdown rendering */
+.bio-content p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.bio-content p:last-child {
+  margin-bottom: 0;
+}
+
+.bio-content strong {
+  font-weight: 700;
+  color: inherit;
+}
+
+.bio-content em {
+  font-style: italic;
+}
+
+/* Dark mode adjustments */
+.dark .bio-content strong {
+  font-weight: 700;
+}
+
+/* Ensure paragraph spacing is visible */
+.bio-content p + p {
+  margin-top: 1rem;
+}

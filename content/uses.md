@@ -1,7 +1,7 @@
 ---
 title: Education
 date: 2025-12-29
-summary: Academic background, patents, and honors of Yang Xu.
+summary: Academic background, patents, and honors of Liqi Jing.
 
 # Optional: Disable comments for this page
 commentable: false

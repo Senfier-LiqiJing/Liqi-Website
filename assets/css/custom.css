@@ -28,3 +28,191 @@ nav#TableOfContents a[href="#backlinks"] + ul {
 nav#TableOfContents li:has(a[href="#backlinks"]) {
     display: none !important;
 }
+
+/* ========================================================================
+   CARD MICRO-INTERACTIONS
+   Enhanced hover effects with 3D lift and soft shadows
+   ======================================================================== */
+
+/* Base card container - enhance existing .group cards */
+.group[role="article"],
+article.group,
+.card,
+[class*="card-"] {
+    /* Smooth transition for all properties */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Initial state - subtle shadow */
+    box-shadow:
+        0 1px 3px 0 rgba(0, 0, 0, 0.1),
+        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+    /* Prepare for transform */
+    transform: translateY(0) scale(1);
+
+    /* Better rendering */
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Hover state - 3D lift effect with enhanced shadows */
+.group[role="article"]:hover,
+article.group:hover,
+.card:hover,
+[class*="card-"]:hover {
+    /* Lift the card upward */
+    transform: translateY(-8px) scale(1.02);
+
+    /* Multi-layer soft shadow for depth */
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(59, 130, 246, 0.1),
+        0 0 40px -10px rgba(59, 130, 246, 0.2);
+}
+
+/* Dark mode shadow adjustments */
+@media (prefers-color-scheme: dark) {
+    .group[role="article"]:hover,
+    article.group:hover,
+    .card:hover,
+    [class*="card-"]:hover {
+        box-shadow:
+            0 20px 25px -5px rgba(0, 0, 0, 0.4),
+            0 10px 10px -5px rgba(0, 0, 0, 0.2),
+            0 0 0 1px rgba(96, 165, 250, 0.2),
+            0 0 40px -10px rgba(96, 165, 250, 0.3);
+    }
+}
+
+/* Dark mode (class-based) */
+.dark .group[role="article"]:hover,
+.dark article.group:hover,
+.dark .card:hover,
+.dark [class*="card-"]:hover {
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.4),
+        0 10px 10px -5px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(96, 165, 250, 0.2),
+        0 0 40px -10px rgba(96, 165, 250, 0.3);
+}
+
+/* Active/pressed state - slight push down */
+.group[role="article"]:active,
+article.group:active,
+.card:active,
+[class*="card-"]:active {
+    transform: translateY(-4px) scale(1.01);
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card image zoom effect on hover */
+.group[role="article"]:hover img,
+article.group:hover img,
+.card:hover img,
+[class*="card-"]:hover img {
+    transform: scale(1.05);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card title color shift on hover */
+.group[role="article"]:hover h3,
+article.group:hover h3,
+.card:hover .card-title,
+[class*="card-"]:hover h3 {
+    color: rgb(37, 99, 235);
+    transition: color 0.2s ease-out;
+}
+
+.dark .group[role="article"]:hover h3,
+.dark article.group:hover h3,
+.dark .card:hover .card-title,
+.dark [class*="card-"]:hover h3 {
+    color: rgb(96, 165, 250);
+}
+
+/* Focus state for accessibility */
+.group[role="article"]:focus-within,
+article.group:focus-within,
+.card:focus-within,
+[class*="card-"]:focus-within {
+    outline: 2px solid rgb(59, 130, 246);
+    outline-offset: 2px;
+    transform: translateY(-6px) scale(1.015);
+}
+
+/* ========================================================================
+   ADDITIONAL CARD VARIATIONS
+   Optional enhanced effects for specific card types
+   ======================================================================== */
+
+/* Subtle card - less aggressive hover */
+.card-subtle:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Bold card - more dramatic hover */
+.card-bold:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 0 60px -15px rgba(59, 130, 246, 0.3);
+}
+
+/* Tilt effect on hover - adds depth perspective */
+.card-tilt {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-tilt:hover {
+    transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+    transform-style: preserve-3d;
+}
+
+/* Glow effect on hover */
+.card-glow:hover {
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 60px rgba(59, 130, 246, 0.4);
+}
+
+/* ========================================================================
+   PERFORMANCE OPTIMIZATIONS
+   Reduce repaints and improve smoothness
+   ======================================================================== */
+
+/* Use GPU acceleration for transforms */
+.group[role="article"],
+article.group,
+.card,
+[class*="card-"] {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .group[role="article"],
+    article.group,
+    .card,
+    [class*="card-"],
+    .group[role="article"]:hover,
+    article.group:hover,
+    .card:hover,
+    [class*="card-"]:hover {
+        transform: none;
+        transition: box-shadow 0.2s ease;
+    }
+
+    .group[role="article"]:hover img,
+    article.group:hover img,
+    .card:hover img,
+    [class*="card-"]:hover img {
+        transform: none;
+    }
+}

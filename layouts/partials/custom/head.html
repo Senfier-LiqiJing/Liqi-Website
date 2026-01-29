@@ -1,0 +1,39 @@
+{{/* Custom head content - typewriter effect */}}
+{{ $typewriterCSS := resources.Get "css/typewriter.css" }}
+{{ if $typewriterCSS }}
+  {{ $typewriterCSS = $typewriterCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $typewriterCSS.RelPermalink }}">
+{{ end }}
+
+{{/* Bio content styling */}}
+{{ $bioCSS := resources.Get "css/bio-styling.css" }}
+{{ if $bioCSS }}
+  {{ $bioCSS = $bioCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $bioCSS.RelPermalink }}">
+{{ end }}
+
+{{ $typewriterJS := resources.Get "js/typewriter.js" }}
+{{ if $typewriterJS }}
+  {{ $typewriterJS = $typewriterJS | resources.Minify }}
+  <script src="{{ $typewriterJS.RelPermalink }}" defer></script>
+{{ end }}
+
+{{/* Bio markdown renderer */}}
+{{ $bioRendererJS := resources.Get "js/bio-renderer.js" }}
+{{ if $bioRendererJS }}
+  {{ $bioRendererJS = $bioRendererJS | resources.Minify }}
+  <script src="{{ $bioRendererJS.RelPermalink }}" defer></script>
+{{ end }}
+
+{{/* Dynamic background effects */}}
+{{ $dynamicBgCSS := resources.Get "css/dynamic-background.css" }}
+{{ if $dynamicBgCSS }}
+  {{ $dynamicBgCSS = $dynamicBgCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $dynamicBgCSS.RelPermalink }}">
+{{ end }}
+
+{{ $particleBgJS := resources.Get "js/particle-background.js" }}
+{{ if $particleBgJS }}
+  {{ $particleBgJS = $particleBgJS | resources.Minify }}
+  <script src="{{ $particleBgJS.RelPermalink }}" defer></script>
+{{ end }}
