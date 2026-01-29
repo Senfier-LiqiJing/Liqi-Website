@@ -1,0 +1,229 @@
+/**
+ * Adaptive Text Contrast for Homepage Biography
+ * Makes text readable over gradient backgrounds by using blend modes and shadows
+ */
+
+/* ==========================================================================
+   TEXT CONTRAST ENHANCEMENT FOR HOMEPAGE ONLY
+   ========================================================================== */
+
+/* Target homepage biography section only */
+.page-home .resume-biography,
+.page-home [class*="resume-biography"] {
+  /* Ensure proper layering */
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   METHOD 1: BLEND MODE INVERSION (Primary Technique)
+   Creates automatic color contrast by inverting colors relative to background
+   ========================================================================== */
+
+/* ==========================================================================
+   SPECIAL RULE: H1 (NAME) IS ALWAYS BLACK - MAXIMUM SPECIFICITY
+   ========================================================================== */
+
+/* Target H1 with maximum specificity - works in both light and dark mode */
+html body .page-home .resume-biography h1,
+html body.dark .page-home .resume-biography h1,
+html[data-theme="dark"] body .page-home .resume-biography h1,
+body .page-home .resume-biography h1[class],
+body.dark .page-home .resume-biography h1[class] {
+  /* Force name to always be black */
+  color: #000000 !important;
+  mix-blend-mode: normal !important;
+
+  /* Light shadow for definition */
+  text-shadow:
+    0 2px 4px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.5) !important;
+
+  /* Ensure text remains sharp */
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Apply blend mode to OTHER text elements (NOT H1) */
+.page-home .resume-biography h2,
+.page-home .resume-biography h3,
+.page-home .resume-biography p,
+.page-home .resume-biography .bio-content,
+.page-home .resume-biography .text-gray-600,
+.page-home .resume-biography .text-gray-700,
+.page-home .resume-biography [class*="text-"] {
+  /* Use difference blend mode for automatic contrast */
+  mix-blend-mode: difference;
+
+  /* Force text to white so it inverts properly */
+  color: #ffffff !important;
+
+  /* Add text shadow for extra definition */
+  text-shadow:
+    0 0 20px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+
+  /* Ensure text remains sharp */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Links need special handling */
+.page-home .resume-biography a {
+  mix-blend-mode: difference;
+  color: #ffffff !important;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-shadow:
+    0 0 20px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.page-home .resume-biography a:hover {
+  text-decoration-thickness: 3px;
+  text-shadow:
+    0 0 30px rgba(0, 0, 0, 0.7),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   METHOD 2: BACKGROUND OVERLAY (Fallback for better readability)
+   Adds semi-transparent backgrounds behind text blocks
+   ========================================================================== */
+
+/* Optional: Add subtle background overlay behind text sections */
+.page-home .resume-biography .bio-content,
+.page-home .resume-biography > div {
+  /* Uncomment to enable background overlay */
+  /* background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 12px; */
+}
+
+/* ==========================================================================
+   ICON AND BUTTON HANDLING
+   Social links and icons need special contrast treatment
+   ========================================================================== */
+
+.page-home .resume-biography [class*="fa-"],
+.page-home .resume-biography i {
+  mix-blend-mode: difference;
+  color: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Social link buttons */
+.page-home .resume-biography a[class*="border"] {
+  /* Remove blend mode from button container */
+  mix-blend-mode: normal !important;
+
+  /* Create high-contrast button style */
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.page-home .resume-biography a[class*="border"]:hover {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Button text and icons */
+.page-home .resume-biography a[class*="border"] span,
+.page-home .resume-biography a[class*="border"] i {
+  color: #ffffff !important;
+  mix-blend-mode: normal !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   AVATAR IMAGE HANDLING
+   Ensure avatar has good contrast
+   ========================================================================== */
+
+.page-home .resume-biography img[class*="rounded"] {
+  /* Add border for definition */
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
+
+  /* Remove blend mode from image */
+  mix-blend-mode: normal !important;
+}
+
+/* ==========================================================================
+   STRONG/BOLD TEXT ENHANCEMENT
+   Make bold text stand out more
+   ========================================================================== */
+
+.page-home .resume-biography strong,
+.page-home .resume-biography b {
+  font-weight: 800 !important;
+  text-shadow:
+    0 0 25px rgba(0, 0, 0, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   Maintain readability on mobile devices
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Slightly stronger shadows on mobile */
+  .page-home .resume-biography h1,
+  .page-home .resume-biography p,
+  .page-home .resume-biography .bio-content {
+    text-shadow:
+      0 0 25px rgba(0, 0, 0, 0.6),
+      0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ==========================================================================
+   ALTERNATIVE: STRONGER BACKGROUND OVERLAY (Optional)
+   Uncomment this section if blend mode doesn't provide enough contrast
+   ========================================================================== */
+
+/*
+.page-home .resume-biography > div > div {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+*/
+
+/* ==========================================================================
+   PRINT AND ACCESSIBILITY
+   Ensure proper contrast in print and for screen readers
+   ========================================================================== */
+
+@media print {
+  .page-home .resume-biography * {
+    mix-blend-mode: normal !important;
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+}
+
+/* Ensure proper contrast for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .page-home .resume-biography * {
+    transition: none !important;
+  }
+}
