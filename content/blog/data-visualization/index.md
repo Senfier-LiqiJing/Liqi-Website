@@ -56,3 +56,6 @@ Beyond inference optimization, I explored advanced methodologies to enhance mode
 To ensure the optimizations did not degrade output quality, I created a comprehensive evaluation framework. This allowed for the quantitative assessment of both image quality and control accuracy, ensuring that the speed gains were achieved while maintaining high-fidelity generation.
 
 </div>
+
+<link rel="stylesheet" href="/css/dynamic-background.css">
+<script src="/js/init-background.js"></script>

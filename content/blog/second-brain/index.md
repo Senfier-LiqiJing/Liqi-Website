@@ -54,3 +54,6 @@ These include specific **helicity-based geometric constraints** to encourage the
 The project currently has a **fully runnable training and evaluation pipeline**. I am currently working on integrating larger datasets and establishing comprehensive benchmarks to further validate the model's performance against state-of-the-art methods.
 
 </div>
+
+<link rel="stylesheet" href="/css/dynamic-background.css">
+<script src="/js/init-background.js"></script>

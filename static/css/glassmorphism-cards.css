@@ -1,0 +1,166 @@
+/* ========================================
+   GOLDEN GRADIENT SECTION TITLES
+   ======================================== */
+
+/* Section titles (Academic History, Publications) with golden gradient */
+.prose h2,
+article h2,
+.markdown h2 {
+  font-family: "Inter", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800 !important;
+  font-size: 2.5rem !important;
+  line-height: 1.2;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  background: linear-gradient(to right, #C5A059, #FFD700, #FDB931, #C5A059);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* ========================================
+   GLASSMORPHISM CARDS
+   ======================================== */
+
+/* --- Glassmorphism Cards with Flowing Gold Border --- */
+
+.premium-glass-card {
+  /* 1. Layout & Glass Effect */
+  position: relative;
+  background: rgba(255, 255, 255, 0.65); /* Higher opacity for better readability */
+  backdrop-filter: blur(12px);          /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+
+  /* 2. The Flowing Gold Border Logic */
+  /* We use a double-layer background trick to animate the border */
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.65), rgba(255,255,255,0.65)), /* Content bg - matches card opacity */
+    linear-gradient(90deg, #C5A059, #FFD700, #FDB931, #FFD700, #C5A059);   /* Border gradient */
+  background-size: 100% 100%, 200% 100%; /* The border gradient is double width for movement */
+
+  /* 3. Animation Setup */
+  animation: goldFlow 3s linear infinite;
+
+  /* 4. Transition for Hover Scale */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* 5. Interaction Settings */
+  cursor: default; /* Ensures no "hand" icon appears */
+
+  /* 6. Modern Typography */
+  font-family: "Inter", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Keyframes for the moving border */
+@keyframes goldFlow {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 0, -200% 0;
+  }
+}
+
+/* Hover Effect: Scale Up */
+.premium-glass-card:hover {
+  transform: scale(1.03); /* Slight zoom */
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2); /* Optional: add a golden glow on hover */
+}
+
+/* Text Readability Adjustment (Optional) */
+.premium-glass-card h3,
+.premium-glass-card p,
+.premium-glass-card li {
+  z-index: 2;
+  position: relative;
+}
+
+/* ========================================
+   MODERN TYPOGRAPHY HIERARCHY
+   ======================================== */
+
+/* Degree Titles (h3) - Bold, Dark Navy, Larger */
+.premium-glass-card h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #1A202C;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.5); /* Soft golden glow */
+}
+
+/* University & Date (first paragraph or strong after h3) - Medium, Lighter Gray, Letter-spacing */
+.premium-glass-card h3 + p,
+.premium-glass-card h3 + strong {
+  font-weight: 500;
+  color: #9CA3AF; /* Lighter gray for better visibility */
+  letter-spacing: 0.025em;
+  margin-bottom: 0.75rem;
+  text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.5); /* Soft golden glow */
+}
+
+/* Body Labels (GPA:, Relevant Coursework:, etc.) - Semi-Bold */
+.premium-glass-card li strong,
+.premium-glass-card p strong {
+  font-weight: 600;
+  color: #4B5563; /* Slightly lighter gray */
+  text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.5); /* Soft golden glow */
+}
+
+/* Body Content - Medium Weight, Better Line Height */
+.premium-glass-card p,
+.premium-glass-card li {
+  font-weight: 500; /* Medium weight for better substance with glow */
+  line-height: 1.6;
+  color: #6B7280; /* Lighter gray for better visibility */
+  text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.5); /* Soft golden glow */
+}
+
+/* List styling improvements */
+.premium-glass-card ul {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.premium-glass-card li {
+  margin-bottom: 0.375rem;
+}
+
+/* Dark mode adjustments for better glass effect */
+.dark .premium-glass-card {
+  background: rgba(0, 0, 0, 0.2); /* Slightly darker glass in dark mode */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .premium-glass-card:hover {
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3); /* Brighter golden glow in dark mode */
+}
+
+/* Dark mode typography adjustments */
+.dark .premium-glass-card h3 {
+  color: #F7FAFC; /* Very light gray for headings */
+}
+
+.dark .premium-glass-card h3 + p,
+.dark .premium-glass-card h3 + strong {
+  color: #E2E8F0; /* Light gray for university & date */
+}
+
+.dark .premium-glass-card li strong,
+.dark .premium-glass-card p strong {
+  color: #EDF2F7; /* Light gray for labels */
+}
+
+.dark .premium-glass-card p,
+.dark .premium-glass-card li {
+  color: #CBD5E0; /* Medium-light gray for body text */
+}

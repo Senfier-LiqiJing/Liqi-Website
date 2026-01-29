@@ -87,3 +87,6 @@ If you find this work useful for your research, please cite our paper:
 > Y. Xu, C. Li, J. Wu, G. Chen and C. Zhang, "A Compact Multiplier-Oriented Chaotic Oscillator for Free Control," in *IEEE Transactions on Circuits and Systems II: Express Briefs*, vol. 70, no. 6, pp. 2276-2280, June 2023.
 
 </div>
+
+<link rel="stylesheet" href="/css/dynamic-background.css">
+<script src="/js/init-background.js"></script>

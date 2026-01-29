@@ -19,5 +19,10 @@ sections:
   - block: markdown
     content:
       text: |
+        <link rel="stylesheet" href="/css/dynamic-background.css">
+        <link rel="stylesheet" href="/css/adaptive-text-contrast.css">
+        <script src="/js/particle-background.js"></script>
+        <script src="/js/init-background.js"></script>
         <script src="/js/bio-fix.js"></script>
+        <script src="/js/adaptive-text-color.js"></script>
 ---

@@ -1,0 +1,316 @@
+/* ============================================================================
+   DYNAMIC BACKGROUND EFFECTS
+   Multiple background animation options for the entire site
+   ============================================================================ */
+
+/* ============================================================================
+   OPTION 1: ANIMATED GRADIENT BACKGROUND (Default, Lightweight)
+   Smooth color transitions creating a flowing gradient effect
+   ============================================================================ */
+
+/* Base background container */
+#page-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Animated gradient background */
+.bg-animated-gradient {
+    background: linear-gradient(
+        -45deg,
+        #ee7752,
+        #e73c7e,
+        #23a6d5,
+        #23d5ab
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+/* Professional variant - subtle blue/purple gradient */
+.bg-animated-gradient.professional {
+    background: linear-gradient(
+        -45deg,
+        #667eea 0%,
+        #764ba2 25%,
+        #f093fb 50%,
+        #4facfe 75%,
+        #667eea 100%
+    );
+    background-size: 400% 400%;
+}
+
+/* Dark mode variant */
+.bg-animated-gradient.dark-mode {
+    background: linear-gradient(
+        -45deg,
+        #1a1a2e,
+        #16213e,
+        #0f3460,
+        #533483
+    );
+    background-size: 400% 400%;
+}
+
+/* Ocean variant */
+.bg-animated-gradient.ocean {
+    background: linear-gradient(
+        -45deg,
+        #2e3192,
+        #1bffff,
+        #4facfe,
+        #00f2fe
+    );
+    background-size: 400% 400%;
+}
+
+/* Sunset variant */
+.bg-animated-gradient.sunset {
+    background: linear-gradient(
+        -45deg,
+        #ff6b6b,
+        #feca57,
+        #ee5a6f,
+        #f79d00
+    );
+    background-size: 400% 400%;
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ============================================================================
+   OPTION 2: GEOMETRIC PATTERN BACKGROUND
+   Animated geometric shapes creating depth and movement
+   ============================================================================ */
+
+.bg-geometric {
+    background-color: #f0f4f8;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+    position: relative;
+}
+
+.bg-geometric::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(30deg, rgba(99, 102, 241, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(99, 102, 241, 0.05) 87.5%, rgba(99, 102, 241, 0.05)),
+        linear-gradient(150deg, rgba(99, 102, 241, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(99, 102, 241, 0.05) 87.5%, rgba(99, 102, 241, 0.05)),
+        linear-gradient(30deg, rgba(99, 102, 241, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(99, 102, 241, 0.05) 87.5%, rgba(99, 102, 241, 0.05)),
+        linear-gradient(150deg, rgba(99, 102, 241, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(99, 102, 241, 0.05) 87.5%, rgba(99, 102, 241, 0.05));
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+    animation: geometricMove 20s linear infinite;
+}
+
+.bg-geometric.dark-mode {
+    background-color: #0f172a;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
+}
+
+@keyframes geometricMove {
+    0% {
+        background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+    }
+    100% {
+        background-position: 80px 140px, 80px 140px, 120px 210px, 120px 210px;
+    }
+}
+
+/* ============================================================================
+   OPTION 3: MESH GRADIENT (Modern, Subtle)
+   Blurred blob gradients creating a soft, modern aesthetic
+   ============================================================================ */
+
+.bg-mesh-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-mesh-gradient::before,
+.bg-mesh-gradient::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 20s ease-in-out infinite;
+}
+
+.bg-mesh-gradient::before {
+    background: radial-gradient(circle, #667eea 0%, transparent 70%);
+    top: -250px;
+    left: -250px;
+    animation-delay: 0s;
+}
+
+.bg-mesh-gradient::after {
+    background: radial-gradient(circle, #f093fb 0%, transparent 70%);
+    bottom: -250px;
+    right: -250px;
+    animation-delay: -10s;
+}
+
+.bg-mesh-gradient.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+/* ============================================================================
+   OPTION 4: PARTICLE GRID (Canvas-based, requires JS)
+   Animated dots creating a dynamic network effect
+   ============================================================================ */
+
+#particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* ============================================================================
+   OPTION 5: WAVES BACKGROUND
+   Animated SVG waves for a calm, flowing effect
+   ============================================================================ */
+
+.bg-waves {
+    background: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1000px 1000px 0 0;
+}
+
+.wave:nth-child(1) {
+    animation: wave 10s linear infinite;
+    z-index: 1;
+    opacity: 0.5;
+    bottom: 0;
+    height: 80px;
+}
+
+.wave:nth-child(2) {
+    animation: wave 15s linear infinite reverse;
+    z-index: 2;
+    opacity: 0.3;
+    bottom: 10px;
+    height: 100px;
+}
+
+.wave:nth-child(3) {
+    animation: wave 20s linear infinite;
+    z-index: 3;
+    opacity: 0.2;
+    bottom: 20px;
+    height: 120px;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1);
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.8);
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1);
+    }
+}
+
+/* ============================================================================
+   CONTENT OVERLAY
+   Ensure content remains readable with semi-transparent overlay
+   ============================================================================ */
+
+.page-body {
+    position: relative;
+    z-index: 1;
+}
+
+/* Optional: Add a subtle overlay to improve text readability */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.dark .bg-overlay {
+    background: rgba(15, 23, 42, 0.85);
+}
+
+/* ============================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================================================ */
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .bg-animated-gradient,
+    .bg-geometric::before,
+    .bg-mesh-gradient::before,
+    .bg-mesh-gradient::after,
+    .wave {
+        animation: none;
+    }
+}
+
+/* GPU acceleration */
+#page-bg,
+.bg-animated-gradient,
+.bg-geometric,
+.bg-mesh-gradient {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: background-position;
+}

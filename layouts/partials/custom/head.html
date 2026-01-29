@@ -1,3 +1,21 @@
+{{/* Force dark mode only - inline script runs immediately */}}
+<script>
+  // Force dark mode on HTML element before page renders
+  (function() {
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+    // Prevent theme switching
+    localStorage.setItem('theme', 'dark');
+  })();
+</script>
+
+{{/* Force dark mode CSS */}}
+{{ $forceDarkCSS := resources.Get "css/force-dark-mode.css" }}
+{{ if $forceDarkCSS }}
+  {{ $forceDarkCSS = $forceDarkCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $forceDarkCSS.RelPermalink }}">
+{{ end }}
+
 {{/* Custom head content - typewriter effect */}}
 {{ $typewriterCSS := resources.Get "css/typewriter.css" }}
 {{ if $typewriterCSS }}
@@ -37,3 +55,63 @@
   {{ $particleBgJS = $particleBgJS | resources.Minify }}
   <script src="{{ $particleBgJS.RelPermalink }}" defer></script>
 {{ end }}
+
+{{/* Adaptive text contrast for homepage */}}
+{{ $adaptiveTextCSS := resources.Get "css/adaptive-text-contrast.css" }}
+{{ if $adaptiveTextCSS }}
+  {{ $adaptiveTextCSS = $adaptiveTextCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $adaptiveTextCSS.RelPermalink }}">
+{{ end }}
+
+{{/* Background initialization for all pages - INLINE */}}
+<script>
+console.log('🔥 INLINE background script loading...');
+(function() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    console.log('🚀 Initializing background...');
+
+    let pageBg = document.getElementById('page-bg');
+    if (!pageBg) {
+      console.log('📦 Creating page-bg element...');
+      pageBg = document.createElement('div');
+      pageBg.id = 'page-bg';
+      pageBg.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;';
+      document.body.insertBefore(pageBg, document.body.firstChild);
+    }
+
+    console.log('✅ page-bg element ready');
+
+    const path = window.location.pathname;
+    console.log('🔍 Current path:', path);
+
+    let pageType = 'default';
+    if (path === '/' || path === '/index.html') {
+      pageType = 'home';
+    } else if (path.includes('/projects') || path.includes('/project/') || path.includes('/blog/')) {
+      pageType = 'projects';
+    } else if (path.includes('/topics') || path.includes('/topic/')) {
+      pageType = 'topics';
+    } else if (path.includes('/education')) {
+      pageType = 'education';
+    }
+
+    console.log(`📄 Page type: ${pageType}`);
+
+    let gradientClass = 'ocean';
+    if (pageType === 'home') gradientClass = 'sunset';
+    else if (pageType === 'projects') gradientClass = 'ocean';
+    else if (pageType === 'topics') gradientClass = 'ocean';
+    else if (pageType === 'education') gradientClass = 'ocean';
+
+    pageBg.className = `bg-animated-gradient ${gradientClass}`;
+    console.log(`🎨 Applied: bg-animated-gradient ${gradientClass}`);
+    console.log('✨ Complete!');
+  }
+})();
+</script>

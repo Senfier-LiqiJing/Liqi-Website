@@ -5,7 +5,7 @@ date: 2024-04-01
 math: true
 
 # Featured image
-# Place an image named `featured.jpg` or `featured.png` in this page's folder.
+# Place an image named `featured.png` or `featured.png` in this page's folder.
 image:
   caption: 'Image credit: Fig. 5 from [2312.06741] Gaussian Splatting SLAM'
 authors:
@@ -53,3 +53,6 @@ Building on existing literature, I proposed conceptual extensions to address cur
 This exploration aims to bridge the gap between high-quality visual rendering and practical, geometry-aware robot perception.
 
 </div>
+
+<link rel="stylesheet" href="/css/dynamic-background.css">
+<script src="/js/init-background.js"></script>

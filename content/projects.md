@@ -16,4 +16,9 @@ sections:
       columns: 2
       spacing:
         padding: ['3rem', 0, '6rem', 0]
+  - block: markdown
+    content:
+      text: |
+        <link rel="stylesheet" href="/css/dynamic-background.css">
+        <script src="/js/init-background.js"></script>
 ---

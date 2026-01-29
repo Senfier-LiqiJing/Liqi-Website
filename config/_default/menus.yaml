@@ -9,8 +9,8 @@ main:
     url: projects/
     weight: 20
   - name: Topics
-    url: tags/
+    url: topics/
     weight: 30
   - name: Education
-    url: uses/
+    url: education/
     weight: 40

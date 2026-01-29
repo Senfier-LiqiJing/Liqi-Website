@@ -1,0 +1,37 @@
+/* ========================================
+   FORCE DARK MODE ONLY
+   Ensures the site always displays in dark mode
+   ======================================== */
+
+/* Force dark mode class on root elements */
+html,
+:root {
+  color-scheme: dark !important;
+}
+
+/* Override light mode if it somehow gets applied */
+html:not(.dark),
+html.light {
+  /* Force dark class */
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity)) !important;
+  color: rgb(248 250 252) !important;
+}
+
+/* Ensure dark class is always present */
+html {
+  @apply dark;
+}
+
+/* Force dark background colors */
+body {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+/* Hide theme toggle button if it appears */
+[data-toggle-theme],
+button[aria-label*="theme"],
+button[aria-label*="Theme"] {
+  display: none !important;
+}

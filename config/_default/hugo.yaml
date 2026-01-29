@@ -67,6 +67,8 @@ taxonomies:
   tag: tags
   category: categories
   author: authors
+permalinks:
+  tags: /topics/:slug/
 markup:
   _merge: deep
 related:
