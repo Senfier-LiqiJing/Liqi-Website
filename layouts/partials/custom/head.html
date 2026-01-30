@@ -63,6 +63,13 @@
   <link rel="stylesheet" href="{{ $adaptiveTextCSS.RelPermalink }}">
 {{ end }}
 
+{{/* Blog/Project detail page typography - fixes dark mode text visibility */}}
+{{/* Direct static link to ensure CSS loads (bypasses Hugo resource pipeline) */}}
+<link rel="stylesheet" href="/css/post-content.css">
+
+{{/* Glassmorphism cards with golden borders - TOC styling */}}
+<link rel="stylesheet" href="/css/glassmorphism-cards.css">
+
 {{/* Background initialization for all pages - INLINE */}}
 <script>
 console.log('🔥 INLINE background script loading...');

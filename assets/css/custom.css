@@ -216,3 +216,190 @@ article.group,
         transform: none;
     }
 }
+
+/* ========================================
+   TABLE OF CONTENTS - GOLDEN GLASS CARD
+   Style the sidebar TOC with premium
+   glassmorphism effect
+   ======================================== */
+
+/* Animation for flowing gold border */
+@keyframes goldFlow {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 0, -200% 0; }
+}
+
+/* TOC Container - Apply Glass Card Effect */
+html.dark nav.hb-toc > div.hb-scrollbar,
+html.dark nav[aria-label="table of contents"] > div,
+html nav.hb-toc > div.hb-scrollbar,
+html nav[aria-label="table of contents"] > div,
+.hb-toc > div.hb-scrollbar,
+nav.hb-toc > div {
+  position: sticky !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
+  margin-top: 1rem !important;
+  margin-right: 0 !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box, border-box !important;
+  background-origin: padding-box, border-box !important;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
+    linear-gradient(90deg, #C5A059, #FFD700, #FDB931, #FFD700, #C5A059) !important;
+  background-size: 100% 100%, 200% 100% !important;
+  animation: goldFlow 3s linear infinite !important;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease !important;
+  font-family: "Inter", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* TOC Hover Effect - Scale Up */
+html.dark nav.hb-toc > div:hover,
+html.dark nav[aria-label="table of contents"] > div:hover,
+html nav.hb-toc > div:hover,
+nav.hb-toc > div:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3) !important;
+}
+
+/* TOC Title "On this page" - Golden Gradient */
+html.dark nav.hb-toc > div > p,
+html.dark nav[aria-label="table of contents"] > div > p,
+html nav.hb-toc > div > p,
+nav.hb-toc > div > p,
+nav[aria-label="table of contents"] > div > p {
+  font-family: "Inter", "Poppins", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 1rem !important;
+  display: inline-block !important;
+  background: linear-gradient(to right, #C5A059, #FFD700, #FDB931, #C5A059) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* TOC Links - Override ALL Tailwind classes */
+html.dark nav.hb-toc a,
+html.dark nav.hb-toc a[href],
+html.dark nav.hb-toc li a,
+html.dark nav.hb-toc ul li a,
+html.dark nav[aria-label="table of contents"] a,
+html.dark nav[aria-label="table of contents"] li a,
+html nav.hb-toc a,
+html nav[aria-label="table of contents"] a,
+nav.hb-toc a.font-semibold,
+nav.hb-toc a.text-gray-500,
+nav.hb-toc ul li a,
+nav[aria-label="table of contents"] ul li a {
+  color: #1a202c !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease, transform 0.2s ease !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* TOC Links - Hover State with Gold Accent */
+html.dark nav.hb-toc a:hover,
+html.dark nav[aria-label="table of contents"] a:hover,
+html nav.hb-toc a:hover,
+nav.hb-toc a:hover,
+nav.hb-toc ul li a:hover,
+nav[aria-label="table of contents"] a:hover {
+  color: #C5A059 !important;
+  -webkit-text-fill-color: #C5A059 !important;
+  transform: translateX(4px) !important;
+}
+
+/* TOC List Items */
+html.dark nav.hb-toc li,
+html nav.hb-toc li,
+nav.hb-toc li,
+nav[aria-label="table of contents"] li {
+  margin-bottom: 0.5rem !important;
+  padding-left: 0 !important;
+}
+
+/* Nested TOC Links (sub-sections with pl-4 class) */
+html.dark nav.hb-toc a.pl-4,
+html.dark nav[aria-label="table of contents"] a.pl-4,
+html nav.hb-toc a.pl-4,
+nav.hb-toc a.pl-4,
+nav[aria-label="table of contents"] a.pl-4 {
+  font-size: 0.875rem !important;
+  color: #4B5563 !important;
+  -webkit-text-fill-color: #4B5563 !important;
+}
+
+html.dark nav.hb-toc a.pl-4:hover,
+html.dark nav[aria-label="table of contents"] a.pl-4:hover,
+html nav.hb-toc a.pl-4:hover,
+nav.hb-toc a.pl-4:hover,
+nav[aria-label="table of contents"] a.pl-4:hover {
+  color: #C5A059 !important;
+  -webkit-text-fill-color: #C5A059 !important;
+}
+
+/* ========================================
+   BLOG METADATA - FIX INVISIBLE TEXT
+   Force dark colors for date, author,
+   read time on light background
+   ======================================== */
+
+/* Target the metadata container (date, author, read time) */
+html.dark article main .text-gray-500,
+html.dark article main .dark\:text-gray-300,
+html.dark article .mt-4.mb-16 .text-gray-500,
+html.dark article .mt-4.mb-16 .dark\:text-gray-300,
+html.dark article .mt-4.mb-16 > div {
+  color: #4b5563 !important;
+  -webkit-text-fill-color: #4b5563 !important;
+}
+
+/* Target date spans */
+html.dark article main .mt-4.mb-16 span,
+html.dark article .text-sm.flex span {
+  color: #4b5563 !important;
+  -webkit-text-fill-color: #4b5563 !important;
+}
+
+/* Target author name and other inline text */
+html.dark article main .mt-4.mb-16 div,
+html.dark article main .group.inline-flex div,
+html.dark article .text-current {
+  color: #4b5563 !important;
+  -webkit-text-fill-color: #4b5563 !important;
+}
+
+/* Author image border - make it visible */
+html.dark article main .mt-4.mb-16 img.border-current,
+html.dark article main .group.inline-flex img {
+  border-color: #4b5563 !important;
+}
+
+/* Links in metadata (like author names if linked) */
+html.dark article main .mt-4.mb-16 a,
+html.dark article .text-sm.flex a {
+  color: #1f2937 !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  text-decoration: none !important;
+}
+
+html.dark article main .mt-4.mb-16 a:hover {
+  color: #C5A059 !important;
+  -webkit-text-fill-color: #C5A059 !important;
+}
+
+/* Last updated timestamp at bottom */
+html.dark article main time.text-gray-500,
+html.dark article main time.dark\:text-gray-400 {
+  color: #4b5563 !important;
+  -webkit-text-fill-color: #4b5563 !important;
+}
