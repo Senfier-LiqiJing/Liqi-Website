@@ -19,7 +19,8 @@
       "Bash(timeout /t 3)",
       "Bash(copy /Y \"e:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\static\\\\css\\\\glassmorphism-cards.css\" \"e:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\public\\\\css\\\\glassmorphism-cards.css\")",
       "Bash(copy \"E:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\content\\\\blog\\\\StyleVAR\\\\framework.png\" \"E:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\content\\\\blog\\\\StyleVAR\\\\featured.png\")",
-      "Bash(copy:*)"
+      "Bash(copy:*)",
+      "Bash(ls -la \"e:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\static\\\\css\"\" 2>/dev/null || dir \"e:portfolioSenfier-LiqiJing.github.iostaticcss \")"
     ]
   }
 }
