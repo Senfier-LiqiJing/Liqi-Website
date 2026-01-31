@@ -8,6 +8,8 @@ sections:
       title: My Projects
       subtitle: Research and Development Work
       text: ''
+      sort_by: Weight
+      sort_ascending: true
       filters:
         folders:
           - blog

@@ -142,11 +142,41 @@ html.dark .prose pre code {
    5. TYPOGRAPHY IMPROVEMENTS
    ---------------------------------------- */
 
-/* Font family */
+/* Font family - explicitly target text elements only, NOT math */
 .dark .prose.dark\:prose-invert,
-.dark .prose.dark\:prose-invert *,
+.dark .prose.dark\:prose-invert p,
+.dark .prose.dark\:prose-invert li,
+.dark .prose.dark\:prose-invert span:not([class*="mjx"]):not([class*="MathJax"]),
+.dark .prose.dark\:prose-invert h1,
+.dark .prose.dark\:prose-invert h2,
+.dark .prose.dark\:prose-invert h3,
+.dark .prose.dark\:prose-invert h4,
+.dark .prose.dark\:prose-invert h5,
+.dark .prose.dark\:prose-invert h6,
+.dark .prose.dark\:prose-invert blockquote,
+.dark .prose.dark\:prose-invert td,
+.dark .prose.dark\:prose-invert th,
+.dark .prose.dark\:prose-invert figcaption,
+.dark .prose.dark\:prose-invert a,
+.dark .prose.dark\:prose-invert strong,
+.dark .prose.dark\:prose-invert em,
 html.dark .prose,
-html.dark .prose * {
+html.dark .prose p,
+html.dark .prose li,
+html.dark .prose span:not([class*="mjx"]):not([class*="MathJax"]):not(.katex):not([class*="katex"]),
+html.dark .prose h1,
+html.dark .prose h2,
+html.dark .prose h3,
+html.dark .prose h4,
+html.dark .prose h5,
+html.dark .prose h6,
+html.dark .prose blockquote,
+html.dark .prose td,
+html.dark .prose th,
+html.dark .prose figcaption,
+html.dark .prose a,
+html.dark .prose strong,
+html.dark .prose em {
   font-family: "Inter", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
@@ -316,12 +346,31 @@ html.dark .prose figcaption {
 }
 
 /* ----------------------------------------
-   10. MATH/KATEX content
+   10. MATH/KATEX/MATHJAX content
+   Only fix color - let MathJax handle fonts
    ---------------------------------------- */
 
+.dark .prose.dark\:prose-invert mjx-container,
+.dark .prose.dark\:prose-invert .MathJax,
 .dark .prose.dark\:prose-invert .katex,
-.dark .prose.dark\:prose-invert .katex *,
+html.dark .prose mjx-container,
+html.dark .prose .MathJax,
 html.dark .prose .katex,
-html.dark .prose .katex * {
+mjx-container {
   color: #1a202c !important;
+}
+
+/* MathJax/KaTeX elements - explicitly preserve math fonts */
+mjx-container,
+mjx-container *,
+.MathJax,
+.MathJax *,
+.katex,
+.katex *,
+.katex-display,
+.katex-display *,
+.katex-html,
+.katex-html * {
+  /* Must use !important to override Inter font rules */
+  font-family: KaTeX_Main, KaTeX_Math, "Times New Roman", serif !important;
 }

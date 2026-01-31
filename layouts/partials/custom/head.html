@@ -1,3 +1,27 @@
+{{/* MathJax configuration - Use TeX fonts for proper LaTeX rendering */}}
+<script>
+window.MathJax = {
+  loader: {
+    load: ['[tex]/ams', '[tex]/color']
+  },
+  tex: {
+    packages: {'[+]': ['ams', 'color']},
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  chtml: {
+    scale: 1,
+    mtextInheritFont: false,
+    merrorInheritFont: false,
+    unknownFamily: 'serif'
+  },
+  svg: {
+    scale: 1,
+    mtextInheritFont: false
+  }
+};
+</script>
+
 {{/* Force dark mode only - inline script runs immediately */}}
 <script>
   // Force dark mode on HTML element before page renders

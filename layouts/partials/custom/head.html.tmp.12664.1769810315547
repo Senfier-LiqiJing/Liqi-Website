@@ -1,0 +1,145 @@
+{{/* MathJax configuration - Latin Modern Math font */}}
+<script>
+window.MathJax = {
+  loader: {
+    load: ['[tex]/ams']
+  },
+  tex: {
+    packages: {'[+]': ['ams']}
+  },
+  chtml: {
+    fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2',
+    mtextInheritFont: false
+  },
+  startup: {
+    ready: function() {
+      MathJax.startup.defaultReady();
+    }
+  }
+};
+</script>
+
+{{/* Force dark mode only - inline script runs immediately */}}
+<script>
+  // Force dark mode on HTML element before page renders
+  (function() {
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+    // Prevent theme switching
+    localStorage.setItem('theme', 'dark');
+  })();
+</script>
+
+{{/* Force dark mode CSS */}}
+{{ $forceDarkCSS := resources.Get "css/force-dark-mode.css" }}
+{{ if $forceDarkCSS }}
+  {{ $forceDarkCSS = $forceDarkCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $forceDarkCSS.RelPermalink }}">
+{{ end }}
+
+{{/* Custom head content - typewriter effect */}}
+{{ $typewriterCSS := resources.Get "css/typewriter.css" }}
+{{ if $typewriterCSS }}
+  {{ $typewriterCSS = $typewriterCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $typewriterCSS.RelPermalink }}">
+{{ end }}
+
+{{/* Bio content styling */}}
+{{ $bioCSS := resources.Get "css/bio-styling.css" }}
+{{ if $bioCSS }}
+  {{ $bioCSS = $bioCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $bioCSS.RelPermalink }}">
+{{ end }}
+
+{{ $typewriterJS := resources.Get "js/typewriter.js" }}
+{{ if $typewriterJS }}
+  {{ $typewriterJS = $typewriterJS | resources.Minify }}
+  <script src="{{ $typewriterJS.RelPermalink }}" defer></script>
+{{ end }}
+
+{{/* Bio markdown renderer */}}
+{{ $bioRendererJS := resources.Get "js/bio-renderer.js" }}
+{{ if $bioRendererJS }}
+  {{ $bioRendererJS = $bioRendererJS | resources.Minify }}
+  <script src="{{ $bioRendererJS.RelPermalink }}" defer></script>
+{{ end }}
+
+{{/* Dynamic background effects */}}
+{{ $dynamicBgCSS := resources.Get "css/dynamic-background.css" }}
+{{ if $dynamicBgCSS }}
+  {{ $dynamicBgCSS = $dynamicBgCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $dynamicBgCSS.RelPermalink }}">
+{{ end }}
+
+{{ $particleBgJS := resources.Get "js/particle-background.js" }}
+{{ if $particleBgJS }}
+  {{ $particleBgJS = $particleBgJS | resources.Minify }}
+  <script src="{{ $particleBgJS.RelPermalink }}" defer></script>
+{{ end }}
+
+{{/* Adaptive text contrast for homepage */}}
+{{ $adaptiveTextCSS := resources.Get "css/adaptive-text-contrast.css" }}
+{{ if $adaptiveTextCSS }}
+  {{ $adaptiveTextCSS = $adaptiveTextCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $adaptiveTextCSS.RelPermalink }}">
+{{ end }}
+
+{{/* Blog/Project detail page typography - fixes dark mode text visibility */}}
+{{/* Direct static link to ensure CSS loads (bypasses Hugo resource pipeline) */}}
+<link rel="stylesheet" href="/css/post-content.css">
+
+{{/* Glassmorphism cards with golden borders - TOC styling */}}
+<link rel="stylesheet" href="/css/glassmorphism-cards.css">
+
+{{/* Background initialization for all pages - INLINE */}}
+<script>
+console.log('🔥 INLINE background script loading...');
+(function() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    console.log('🚀 Initializing background...');
+
+    let pageBg = document.getElementById('page-bg');
+    if (!pageBg) {
+      console.log('📦 Creating page-bg element...');
+      pageBg = document.createElement('div');
+      pageBg.id = 'page-bg';
+      pageBg.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;';
+      document.body.insertBefore(pageBg, document.body.firstChild);
+    }
+
+    console.log('✅ page-bg element ready');
+
+    const path = window.location.pathname;
+    console.log('🔍 Current path:', path);
+
+    let pageType = 'default';
+    if (path === '/' || path === '/index.html') {
+      pageType = 'home';
+    } else if (path.includes('/projects') || path.includes('/project/') || path.includes('/blog/')) {
+      pageType = 'projects';
+    } else if (path.includes('/topics') || path.includes('/topic/')) {
+      pageType = 'topics';
+    } else if (path.includes('/education')) {
+      pageType = 'education';
+    }
+
+    console.log(`📄 Page type: ${pageType}`);
+
+    let gradientClass = 'ocean';
+    if (pageType === 'home') gradientClass = 'sunset';
+    else if (pageType === 'projects') gradientClass = 'ocean';
+    else if (pageType === 'topics') gradientClass = 'ocean';
+    else if (pageType === 'education') gradientClass = 'ocean';
+
+    pageBg.className = `bg-animated-gradient ${gradientClass}`;
+    console.log(`🎨 Applied: bg-animated-gradient ${gradientClass}`);
+    console.log('✨ Complete!');
+  }
+})();
+</script>

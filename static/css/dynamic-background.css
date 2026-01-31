@@ -388,8 +388,20 @@ html.dark article main .prose a:hover {
 
 /* 4. TYPOGRAPHY UPGRADE */
 html.dark article main .prose,
-html.dark article main .prose * {
+html.dark article main .prose *:not(.katex):not(.katex *):not(.katex-display):not(.katex-display *) {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Preserve KaTeX math fonts - do not override */
+html.dark article main .prose .katex,
+html.dark article main .prose .katex *,
+html.dark article main .prose .katex-display,
+html.dark article main .prose .katex-display *,
+article main .prose .katex,
+article main .prose .katex *,
+.katex,
+.katex * {
+    font-family: KaTeX_Main, "Times New Roman", serif !important;
 }
 
 html.dark article main .prose p,

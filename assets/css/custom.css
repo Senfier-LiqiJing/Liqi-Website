@@ -403,3 +403,70 @@ html.dark article main time.dark\:text-gray-400 {
   color: #4b5563 !important;
   -webkit-text-fill-color: #4b5563 !important;
 }
+
+/* ========================================
+   CO-AUTHOR STYLING
+   Compact display for co-authors without links
+   ======================================== */
+
+/* Co-author compact card */
+.co-author-compact {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.co-author-compact:last-of-type {
+  border-bottom: none;
+}
+
+/* Smaller "AUTHORS" label for co-authors */
+.co-author-compact .uppercase {
+  font-size: 0.55rem !important;
+  margin-bottom: 0.1rem !important;
+  opacity: 0.7;
+}
+
+/* Smaller name for co-authors */
+.co-author-compact .font-medium {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+}
+
+/* ========================================
+   MATH FORMULA STYLING
+   Only color fix - MathJax handles fonts
+   ======================================== */
+
+/* Fix math color */
+mjx-container,
+.MathJax,
+.katex {
+  color: #1a202c !important;
+}
+
+/* MathJax elements - let MathJax control fonts completely */
+mjx-container,
+mjx-container *,
+.MathJax,
+.MathJax * {
+  /* Do not override font - MathJax handles this */
+  -webkit-text-fill-color: unset !important;
+}
+
+/* Block equation containers - hide scrollbars */
+mjx-container[display="true"],
+.MathJax_Display,
+.katex-display {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding: 0.5rem 0 !important;
+  margin: 1rem 0 !important;
+}
+
+/* Chrome/Safari: Hide scrollbar */
+mjx-container::-webkit-scrollbar {
+  display: none !important;
+}

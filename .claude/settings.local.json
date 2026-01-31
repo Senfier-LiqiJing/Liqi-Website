@@ -17,7 +17,9 @@
       "Bash(curl:*)",
       "Bash(pkill:*)",
       "Bash(timeout /t 3)",
-      "Bash(copy /Y \"e:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\static\\\\css\\\\glassmorphism-cards.css\" \"e:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\public\\\\css\\\\glassmorphism-cards.css\")"
+      "Bash(copy /Y \"e:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\static\\\\css\\\\glassmorphism-cards.css\" \"e:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\public\\\\css\\\\glassmorphism-cards.css\")",
+      "Bash(copy \"E:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\content\\\\blog\\\\StyleVAR\\\\framework.png\" \"E:\\\\portfolio\\\\Senfier-LiqiJing.github.io\\\\content\\\\blog\\\\StyleVAR\\\\featured.png\")",
+      "Bash(copy:*)"
     ]
   }
 }
