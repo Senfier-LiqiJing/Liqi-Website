@@ -23,10 +23,15 @@ html {
   @apply dark;
 }
 
-/* Force dark background colors */
+/* Force dark text color but transparent background for dynamic backgrounds */
 body {
-  background-color: #0f172a !important;
+  background-color: transparent !important;
   color: #f8fafc !important;
+}
+
+/* Fallback background on html element (behind #page-bg) */
+html {
+  background-color: #0f172a;
 }
 
 /* Hide theme toggle button if it appears */
